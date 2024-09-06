@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code  # Ensure the volume matches the WORKDIR in the Dockerfile
+    environment:
+      - WATCHFILES_FORCE_POLLING=true
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
